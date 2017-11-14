@@ -19,14 +19,39 @@ inspections <-
   janitor::clean_names()
 
 inspections <-
-  inspection %>%
+  inspections %>%
   filter(boro != "Missing") %>% 
   mutate(boro = str_to_title(boro))
 
 inspections %>% 
-  ggplot(aes(x = boro, y = score, , fill = boro)) + 
+  ggplot(aes(x = boro, y = score, fill = boro)) + 
   geom_boxplot(aes(group = boro)) +
   labs(title = "Boxplot of Sanitary Inspection Scores by Boro")  + 
+  theme(legend.position = "none")
+```
+
+
+```{r}
+#Change value name to readable format
+inspections$cuisine_description[inspections$cuisine_description == "CafÃ©/Coffee/Tea"] <- "Coffee/Tea"
+
+
+#Subset by Korean cuisine
+korean_food_locations <- inspections[inspections$cuisine_description == "Korean",] %>%
+  select(boro) %>%
+  table() %>%
+  as.data.frame()
+korean_food_locations <- rbind(c(x,0), korean_food_locations)
+korean_food_locations$boro <- korean_food_locations$.
+korean_food_locations <- korean_food_locations[c(3,2)]
+korean_food_locations$boro <- as.character(korean_food_locations$boro)
+korean_food_locations[is.na(korean_food_locations)] <- 0
+korean_food_locations$boro[korean_food_locations$boro == "0"] <- "Staten Island"
+korean_food_locations$Freq <- as.numeric(korean_food_locations$Freq)
+
+#Plot frequency of Korean Restaurants per Borough
+korean_food_locations %>%
+  ggplot(aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Korean Restaurants in each NYC Borough", y = "Number of Restaurants", x = "Borough") + 
   theme(legend.position = "none")
 
 ```
