@@ -1,0 +1,7 @@
+---
+title: 'Data Science Homework #6'
+author: "P. Batten & M. de Ferrante"
+date: "November 14, 2017"
+output: html_document
+---
+
