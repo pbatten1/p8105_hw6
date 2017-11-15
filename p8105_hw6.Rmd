@@ -43,6 +43,8 @@ boros = inspections %>% distinct(boro) %>% pull()
 # selectInput widget
 selectInput("boro_choice", label = h3("Select boro"),
             choices = boros, selected = "Manhattan")
+dateRangeInput("date_range", label = h3("Select date range"),
+               startview = "year") 
 
 
 ```
@@ -58,8 +60,8 @@ inspections$inspection_date <- as.POSIXct(inspections$inspection_date, format = 
 
   inspections %>%
     na.omit() %>%
-  filter(boro == input$boro_choice) %>%
-    ggplot(aes(x = inspection_date, y = score)) +
+  filter(boro == input$boro_choice, inspection_date %in% input$date_range[1]:input$date_range[2]) %>%
+    ggplot(aes(x = as.POSIXct(inspection_date), y = score)) +
       geom_hex() +
       xlab("Date") + ylab("Inspection Score") +
       ggtitle("Inspection Scores Over Time") +
