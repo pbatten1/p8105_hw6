@@ -94,7 +94,7 @@ coffee_tea_locations %>%
   theme(legend.position = "none")
 
 #interactivity
-coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops in each NYC Borough", y = "Number of Restaurants", x = "Borough") + 
+coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops by Borough", y = "Count", x = "Borough") + 
   theme(legend.position = "none")
 ggplotly(coffee_tea_locations_plot)
 ```
