@@ -2,3 +2,5 @@
 title: "NYC Restaurant Inspections"
 ---
 
+### General About:
+The NYC Inspection dataset is a record of all eating establishment inspection data collected by the New York Department of Health in the calendar year 2016. 
