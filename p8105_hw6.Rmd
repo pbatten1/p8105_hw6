@@ -58,13 +58,6 @@ radioButtons("boro_choice", label = h3("Choose boro"),
     choices = boro_choice, 
     selected = "Manhattan")
 
-
-
-
-#dateRangeInput("date_range", label = h3("Select date range"),
-                                        #startview = "year") 
-
-
 ```
 
 Row
