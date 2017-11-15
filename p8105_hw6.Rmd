@@ -36,8 +36,7 @@ library(plotly)
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
-
+### Inspection Scores Over Time
 
 ```{r}
 inspections$inspection_date <- as.POSIXct(inspections$inspection_date, format = "%Y-%m-%d")
@@ -58,7 +57,7 @@ ggplotly(scores_over_time)
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Sanitary Inspection Scores by Boro
 
 ```{r}
 score_by_boro <- 
@@ -73,7 +72,7 @@ ggplotly(score_by_boro)
 ```
 
 
-### Chart C
+### Number of Coffee/Tea Shops in each NYC Borough
 
 ```{r}
 #Change value name to readable format
