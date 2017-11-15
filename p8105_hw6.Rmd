@@ -96,32 +96,21 @@ renderPlotly( {ggplotly(
 ```
 
 
-### Coffee/Tea Shops Barplot
+### Restaurant Count Barplot
 
 ```{r}
-
-#Subset by Korean cuisine
-coffee_tea_locations <- inspections[inspections$cuisine_description == "Coffee/Tea",] %>%
-  select(boro) %>%
+inspections_cuisine <- select(inspections, boro, cuisine_description) %>%
   table() %>%
   as.data.frame()
-coffee_tea_locations$boro <- coffee_tea_locations$.
-coffee_tea_locations <- coffee_tea_locations[c(3,2)]
-coffee_tea_locations$Freq <- as.numeric(coffee_tea_locations$Freq)
-coffee_tea_locations$boro <- as.factor(coffee_tea_locations$boro)
-#Plot frequency of Coffee Tea Shops per Borough
-coffee_tea_locations %>%
-  ggplot(aes(x = boro, y = Freq, fill = boro)) + 
-  geom_bar(stat = "identity") + 
-  labs(title = "Number of Coffee/Tea Shops in each NYC Borough", 
-       y = "Number of Shops", x = "Borough") + 
-  theme(legend.position = "none")
+renderPlotly( {ggplotly
+    inspections_cuisine %>%
+    na.omit() %>%
+    filter(cuisine_description == input$cuisine_choice) %>%
+    ggplot(aes(x = boro, y = Freq, fill = boro)) + 
+    geom_bar(stat = "identity") +
+    labs(title = "Number of Restaurants in each NYC Borough", 
+    y = "Number of Restaurants", x = "Boro") + 
+    theme(legend.position = "none")
+} )
 
-#interactivity
-coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) +
-  geom_bar(stat = "identity") + 
-  labs(title = "Number of Coffee/Tea Shops by Boro", 
-       y = "Count", x = "Borough") + 
-  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1)) 
-ggplotly(coffee_tea_locations_plot)
 ```
