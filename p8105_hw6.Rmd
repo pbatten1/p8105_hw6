@@ -57,7 +57,7 @@ ggplotly(scores_over_time)
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Sanitary Inspection Scores by Boro
+### Boxplot of Sanitary Inspection Scores by Boro
 
 ```{r}
 score_by_boro <- 
@@ -65,14 +65,14 @@ score_by_boro <-
   na.omit() %>%
     ggplot(aes(x = boro, y = score , fill = boro)) + 
     geom_boxplot(aes(group = boro)) +
-    labs(title = "Boxplot of Sanitary Inspection Scores by Boro")  + 
+    labs(title = "Inspection Scores by Boro")  + 
     theme(legend.position = "none")
 
 ggplotly(score_by_boro)
 ```
 
 
-### Number of Coffee/Tea Shops in each NYC Borough
+### Bar Plot of Number of Coffee/Tea Shops in each NYC Boro
 
 ```{r}
 #Change value name to readable format
@@ -90,11 +90,17 @@ coffee_tea_locations$Freq <- as.numeric(coffee_tea_locations$Freq)
 coffee_tea_locations$boro <- as.factor(coffee_tea_locations$boro)
 #Plot frequency of Coffee Tea Shops per Borough
 coffee_tea_locations %>%
-  ggplot(aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops in each NYC Borough", y = "Number of Shops", x = "Borough") + 
+  ggplot(aes(x = boro, y = Freq, fill = boro)) + 
+  geom_bar(stat = "identity") + 
+  labs(title = "Number of Coffee/Tea Shops in each NYC Borough", 
+       y = "Number of Shops", x = "Borough") + 
   theme(legend.position = "none")
 
 #interactivity
-coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops by Borough", y = "Count", x = "Borough") + 
+coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) +
+  geom_bar(stat = "identity") + 
+  labs(title = "Number of Coffee/Tea Shops by Boro", 
+       y = "Count", x = "Borough") + 
   theme(legend.position = "none")
 ggplotly(coffee_tea_locations_plot)
 ```
