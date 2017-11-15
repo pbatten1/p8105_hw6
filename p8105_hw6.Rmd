@@ -59,22 +59,21 @@ inspections$cuisine_description[inspections$cuisine_description == "CafÃ©/Coff
 
 
 #Subset by Korean cuisine
-korean_food_locations <- inspections[inspections$cuisine_description == "Korean",] %>%
+coffee_tea_locations <- inspections[inspections$cuisine_description == "Coffee/Tea",] %>%
   select(boro) %>%
   table() %>%
   as.data.frame()
-korean_food_locations$boro <- korean_food_locations$.
-korean_food_locations <- korean_food_locations[c(3,2)]
-x <- c("Staten Island", 0)
-korean_food_locations <- rbind(korean_food_locations, x)
-korean_food_locations$boro <- as.character(korean_food_locations$boro)
-korean_food_locations[is.na(korean_food_locations)] <- 0
-korean_food_locations$boro[korean_food_locations$boro == "0"] <- "Staten Island"
-korean_food_locations$Freq <- as.numeric(korean_food_locations$Freq)
-
-#Plot frequency of Korean Restaurants per Borough
-korean_food_locations %>%
-  ggplot(aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Korean Restaurants in each NYC Borough", y = "Number of Restaurants", x = "Borough") + 
+coffee_tea_locations$boro <- coffee_tea_locations$.
+coffee_tea_locations <- coffee_tea_locations[c(3,2)]
+coffee_tea_locations$Freq <- as.numeric(coffee_tea_locations$Freq)
+coffee_tea_locations$boro <- as.factor(coffee_tea_locations$boro)
+#Plot frequency of Coffee Tea Shops per Borough
+coffee_tea_locations %>%
+  ggplot(aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops in each NYC Borough", y = "Number of Shops", x = "Borough") + 
   theme(legend.position = "none")
 
+#interactivity
+coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq, fill = boro)) + geom_bar(stat = "identity") + labs(title = "Number of Coffee/Tea Shops in each NYC Borough", y = "Number of Restaurants", x = "Borough") + 
+  theme(legend.position = "none")
+ggplotly(coffee_tea_locations_plot)
 ```
