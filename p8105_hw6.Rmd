@@ -101,6 +101,6 @@ coffee_tea_locations_plot <- ggplot(coffee_tea_locations, aes(x = boro, y = Freq
   geom_bar(stat = "identity") + 
   labs(title = "Number of Coffee/Tea Shops by Boro", 
        y = "Count", x = "Borough") + 
-  theme(legend.position = "none")
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1)) 
 ggplotly(coffee_tea_locations_plot)
 ```
