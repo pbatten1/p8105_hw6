@@ -1,9 +1,14 @@
 ---
 title: 'Data Science Homework #6'
-author: "P. Batten & M. de Ferrante"
-date: "November 14, 2017"
-output: html_document
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
 
 
 ```{r}
@@ -26,17 +31,15 @@ inspections <-
 library(scales)
 library(plotly)
 
-score_by_boro <- 
-  inspections %>% 
-  na.omit() %>%
-    ggplot(aes(x = boro, y = score , fill = boro)) + 
-    geom_boxplot(aes(group = boro)) +
-    labs(title = "Boxplot of Sanitary Inspection Scores by Boro")  + 
-    theme(legend.position = "none")
+```
 
-ggplotly(score_by_boro)
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
 
 
+```{r}
 inspections$inspection_date <- as.POSIXct(inspections$inspection_date, format = "%Y-%m-%d")
 
 scores_over_time <- 
@@ -52,6 +55,25 @@ ggplotly(scores_over_time)
 
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+score_by_boro <- 
+  inspections %>% 
+  na.omit() %>%
+    ggplot(aes(x = boro, y = score , fill = boro)) + 
+    geom_boxplot(aes(group = boro)) +
+    labs(title = "Boxplot of Sanitary Inspection Scores by Boro")  + 
+    theme(legend.position = "none")
+
+ggplotly(score_by_boro)
+```
+
+
+### Chart C
 
 ```{r}
 #Change value name to readable format
