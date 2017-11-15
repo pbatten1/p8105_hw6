@@ -65,6 +65,8 @@ korean_food_locations <- inspections[inspections$cuisine_description == "Korean"
   as.data.frame()
 korean_food_locations$boro <- korean_food_locations$.
 korean_food_locations <- korean_food_locations[c(3,2)]
+x <- c("Staten Island", 0)
+korean_food_locations <- rbind(korean_food_locations, x)
 korean_food_locations$boro <- as.character(korean_food_locations$boro)
 korean_food_locations[is.na(korean_food_locations)] <- 0
 korean_food_locations$boro[korean_food_locations$boro == "0"] <- "Staten Island"
