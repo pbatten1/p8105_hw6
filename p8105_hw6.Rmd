@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -16,6 +17,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(stringr)
+library(shiny)
 
 inspections <- 
   read_csv("../data/DOHMH_New_York_City_Restaurant_Inspection_Results.csv", 
@@ -33,28 +35,39 @@ library(plotly)
 
 ```
 
-Column {data-width=650}
+Column {.sidebar}
 -----------------------------------------------------------------------
+```{r}
+boros = inspections %>% distinct(boro) %>% pull()
 
+# selectInput widget
+selectInput("boro_choice", label = h3("Select boro"),
+            choices = boros, selected = "Manhattan")
+
+
+```
+
+Row
+-----------------------------------------------------------------------
 ### Inspection Scores Over Time
 
 ```{r}
 inspections$inspection_date <- as.POSIXct(inspections$inspection_date, format = "%Y-%m-%d")
 
-scores_over_time <- 
+ renderPlotly( {ggplotly(
+
   inspections %>%
     na.omit() %>%
+  filter(boro == input$boro_choice) %>%
     ggplot(aes(x = inspection_date, y = score)) +
       geom_hex() +
       xlab("Date") + ylab("Inspection Score") +
       ggtitle("Inspection Scores Over Time") +
-      scale_x_datetime(labels = date_format("%Y-%m-%d"))
-
-ggplotly(scores_over_time)
-
+      scale_x_datetime(labels = date_format("%Y-%m-%d")))
+})
 ```
 
-Column {data-width=350}
+Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 
 ### Boxplot of Sanitary Inspection Scores by Boro
