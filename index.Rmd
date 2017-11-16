@@ -2,13 +2,13 @@
 title: "NYC Restaurant Inspections"
 ---
 
-### General About:
+## General About:
 The NYC Inspection dataset is a record of all eating establishment inspection data collected by the New York Department of Health from the start of 2012 to October 2017. Inspections include a written description of health code violations, a score totaling all violations (i.e., a lower score indicates a better inspection performance), and a letter grade to be displayed publically indicating general inspection performance. Descriptions of individual restaurants are also provided, including name of the establishment,  types of cuisine served, street/location, and date of inspection. 
 
-## Inspection Scores Over Time plot
+### Inspection Scores Over Time plot
 This hex-plot examines the distribution and counts of scores over the years that inspections were given. Date is on the x-axis and Inspection Score is on the y-axis (keeping in mind that lower scores reflect better performances). Lighter hexes indicate greater concentrations of scores.
 
-## Inspection Scores Boxplot
+### Inspection Scores Boxplot
 This boxplot expresses much of the of the same data as the previous plot, but stratified by boro rather than over time. This type of plot is more useful for examining distribution of scores according to strata, but not for dispersion of scores over time. As per the traditional presentation of boxplots, the edges of the box are the 1st and 3rd quartile scores (bottom to top), and the line through the box is the median score.
 
 ## Restaurant Count Barplot
