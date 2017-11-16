@@ -183,6 +183,9 @@ $(document).ready(function () {
   <a href="p8105_hw6_dashboard.html">Flex Dashboard</a>
 </li>
 <li>
+  <a href="https://mdeferrante.shinyapps.io/NYC_Inspections/">Shiny App</a>
+</li>
+<li>
   <a href="https://github.com/pbatten1/p8105_hw6">
     <span class="fa fa-github fa-lg"></span>
      
@@ -204,11 +207,19 @@ $(document).ready(function () {
 
 <div id="general-about" class="section level3">
 <h3>General About:</h3>
+<<<<<<< HEAD
 <p>The NYC Inspection dataset is a record of all eating establishment inspection data collected by the New York Department of Health from the start of 2012 to October 2017. Inspections include a written description of health code violations, a score totaling all violations (i.e., a lower score indicates a better inspection performance), and a letter grade to be displayed publically indicating general inspection performance. Descriptions of individual restaurants are also provided, including name of the establishment, types of cuisine served, street/location, and date of inspection.</p>
 </div>
 <div id="inspection-scores-over-time-plot" class="section level2">
 <h2>Inspection Scores Over Time plot</h2>
 <p>This hex-plot examines the distribution and counts of scores over the years that inspections were given. Date is on the x-axis and Inspection Score is on the y-axis (keeping in mind that lower scores reflect better performances). Lighter hexes indicate greater concentrations of scores.</p>
+=======
+<p>The NYC Inspection dataset is a record of all eating establishment inspection data collected by the New York Department of Health from the start of 1990 to October 2017. Inspections include a written description of health code violations, a score totaling all violations (i.e., a lower score indicates a better inspection performance), and a letter grade to be displayed publically indicating general inspection performance. Descriptions of individual restaurants are also provided, including name of the establishment, types of cuisine served, street/location, and date of inspection.</p>
+</div>
+<div id="inspection-scores-over-time-plot" class="section level2">
+<h2>Inspection Scores Over Time plot</h2>
+<p>This hex-plot examines the distribution and counts of scores over the years that inspections were given. Date is on the x-axis and Inspection Score is on the y-axis (keeping in mind that lower scores reflect better performances). Lighter hexes indicate greater concentrations of scores. We used na.omit() before plotting to remove missing values, which took out inspection records before 2012 (from 1990 to 2011 no inspection scores were recorded).</p>
+>>>>>>> c706b84e344a36705430f73088036b5785e02b52
 </div>
 <div id="inspection-scores-boxplot" class="section level2">
 <h2>Inspection Scores Boxplot</h2>
